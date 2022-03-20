@@ -36,6 +36,12 @@ jobs:
       - run:
           name: Post-site
           command: mvn post-site
+      - run:
+          name: JavadocBadgeGenerationPermissions
+          command: 'chmod a+x generate_javadoc_badge.sh'
+      - run:
+          name: JavadocBadgeGeneration
+          command: 'bash generate_javadoc_badge.sh target/checkstyle-result.xml target/site/badges/javadoc_coverage.svg'
       - store_artifacts:
           path: target/site/badges
 
