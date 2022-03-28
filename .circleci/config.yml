@@ -24,7 +24,7 @@ jobs:
       # Use mvn clean and package as the standard maven build phase
       - run:
           name: Build
-          command: mvn -B -DskipTests clean package
+          command: mvn -B -DskipTests clean verify package
       # Then run your tests!
       - run:
           name: Test
@@ -42,6 +42,12 @@ jobs:
       - run:
           name: JavadocBadgeGeneration
           command: 'bash generate_javadoc_badge.sh target/checkstyle-result.xml target/site/badges/javadoc_coverage.svg'
+      - run:
+          name: DependencyCheckBadgeGenerationPermissions
+          command: 'chmod a+x generate_dependency_check_badge.sh'
+      - run:
+          name: DependencyCheckBadgeGeneration
+          command: 'bash generate_dependency_check_badge.sh target/dependency-check-report.html target/site/badges/dependency_check.svg'
       - store_artifacts:
           path: target/site/badges
 
