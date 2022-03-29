@@ -48,8 +48,12 @@ jobs:
       - run:
           name: DependencyCheckBadgeGeneration
           command: 'bash generate_dependency_check_badge.sh target/dependency-check-report.html target/site/badges/dependency_check.svg'
-      - store_artifacts:
-          path: target/site/badges
+      - run:
+          name: BadgesUploadPermissions
+          command: 'chmod a+x upload_badges.sh'
+      - run:
+          name: BadgesUpload
+          command: 'bash upload_badges.sh target/site/badges/checkstyle-result.svg target/site/badges/javadoc_coverage.svg target/site/badges/dependency_check.svg'
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
