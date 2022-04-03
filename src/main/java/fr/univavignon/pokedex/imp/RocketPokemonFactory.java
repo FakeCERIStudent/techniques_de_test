@@ -15,7 +15,7 @@ public class RocketPokemonFactory implements IPokemonFactory {
 	static {
 		Map<Integer, String> aMap = new HashMap<Integer, String>();
         aMap.put(-1, "Ash's Pikachu");
-        aMap.put(0, "Missing N°");
+        aMap.put(0, "MISSINGNO");
         aMap.put(1, "Bulbasaur");
         //TODO : Gotta map them all !
         index2name = UnmodifiableMap.unmodifiableMap(aMap);
